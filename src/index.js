@@ -91,7 +91,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 // require('dotenv').load()
-const port = 3000
+const port = 3031
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
