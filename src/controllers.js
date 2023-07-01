@@ -1,10 +1,10 @@
 'use strict'
 
-const util = require('util')
-const mysql = require('mysql')
-const db = require('./../db')
+import util from 'util'
+import mysql from 'mysql'
+import db from './db.js'
 
-module.exports = {
+export default {
   get: (req, res) => {
     let sql = 'SELECT * FROM products'
     db.query(sql, (err, response) => {

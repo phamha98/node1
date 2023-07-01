@@ -1,13 +1,12 @@
-const express = require('express')
+import express from 'express'
 const app = express()
-const bodyParser = require('body-parser')
-require('dotenv').load()
+import bodyParser from 'body-parser'
 const port = 3000
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-let routes = require('./routes') //importing route
+import { routes } from './routes.js' //importing route
 routes(app)
 
 app.use(function (req, res) {
