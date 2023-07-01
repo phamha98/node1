@@ -1,29 +1,12 @@
-name: hello world
-on:
-
-  push:
-    paths:
-      - '!README.md'
-      - '!docs/**'
-      - '**.js'
-    branches:
-      - 'main'
-      - 'release/**'
-      - '!dev/**'
-  pull_request:
-    type: [opened, reopened, synchronize]
-
-  workflow_dispatch:
-jobs:
-  say-hello:
-    runs-on: ubuntu-latest
-    steps:
-      - if: ${{github.event_name == 'pull_request'}}
-        uses: mheap/github-action-required-labels@v1
-        with:
-          mode: exactly
-          count: 0
-          labels: "do not build"
-      - run: echo "TODAY=$(date +%y-%m-%d)" >> $GITHUB_ENV
-      - run: echo Hello world, today is $TODAY
-      - run: docker image ls     
+steps:
+  - uses: actions/checkout@v2
+  
+  - name: Deploy to Staging
+    uses: Techie-Pi/node-vps-deployment@main
+    with:
+      remote-path: "~/deployment/staging"
+      host: 123.123.123.123
+      username: "ubuntu"
+      port: 2080
+      password: ${{ secrets.staging-password }}
+      pm2-id: "staging"
