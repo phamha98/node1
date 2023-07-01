@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: phamha98/node1@master
+    - uses: actions/checkout@v2
     - name: Use Node.js 16
-      uses: phamha98/node1@master
+      uses: actions/setup-node@v2
       with:
         node-version: 16
     - run: npm i
