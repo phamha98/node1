@@ -1,23 +1,24 @@
-import express from 'express'
-import { routes } from './routes.js' //importing route
-import bodyParser from 'body-parser'
-import 'dotenv/config'
-import { Server } from 'socket.io'
-import http from 'http'
-import { Log } from './Log.js'
-import multer from 'multer'
-import formidable from 'formidable'
-import siofu from 'socketio-file-upload'
-import { RouterApp } from './RouterApp.js'
-import moment from 'moment'
+const express = require('express')
+// import { routes } from './routes.js' //importing route
+const bodyParser = require('body-parser')
+// import 'dotenv/config'
+// import { Server } from 'socket.io'
+// import http from 'http'
+// import { Log } from './Log.js'
+// import multer from 'multer'
+// import formidable from 'formidable'
+// import siofu from 'socketio-file-upload'
+// import { RouterApp } from './RouterApp.js'
+// import moment from 'moment'
 const process = require('process');
-// const app = express()
-const route = new RouterApp()
-const app = route.app
+const app = express()
+const port = 3000
+// const route = new RouterApp()
+// const app = route.app
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(siofu.router)
-routes(route)
+// app.use(siofu.router)
+// routes(route)
 // const server = http.createServer(app)
 
 /**
@@ -63,31 +64,31 @@ routes(route)
 //     // delete memory.clients[socket.id]
 //   })
 // })
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) {
-    Log.e('file: ', file)
-    cb(null, `img${new Date().getTime()}_` + file.originalname)
-  }
-})
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     Log.e('file: ', file)
+//     cb(null, `img${new Date().getTime()}_` + file.originalname)
+//   }
+// })
 
-var upload1 = multer({ storage: storage })
+// var upload1 = multer({ storage: storage })
 
-app.post('/file', upload1.array('file'), function (req, res, next) {
-  const files = req.files;
-  const fileLinks = [];
-  console.log('file', files)
-  // Construct link paths for each uploaded file
-  const prefix = 'http://' + req.hostname + ":" + process.env.SEVER_PORT
-  files.forEach((file) => {
-    const linkPath = prefix + `/uploads/${file.filename}`;
-    fileLinks.push(linkPath);
-  });
+// app.post('/file', upload1.array('file'), function (req, res, next) {
+//   const files = req.files;
+//   const fileLinks = [];
+//   console.log('file', files)
+//   // Construct link paths for each uploaded file
+//   const prefix = 'http://' + req.hostname + ":" + process.env.SEVER_PORT
+//   files.forEach((file) => {
+//     const linkPath = prefix + `/uploads/${file.filename}`;
+//     fileLinks.push(linkPath);
+//   });
 
-  return res.json({ files: fileLinks, status: true, });
-})
+//   return res.json({ files: fileLinks, status: true, });
+// })
 
 /**
  *
@@ -96,7 +97,7 @@ app.post('/file', upload1.array('file'), function (req, res, next) {
 // server.listen(3001, () => {
 //   console.log('http:3001')
 // })
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 
 app.get('/', (req, res) => {
   // Display a list of links to the files in the "uploads" directory
@@ -113,6 +114,6 @@ app.get('/', (req, res) => {
 app.use(function (req, res) {
   res.status(404).send({ url: req.originalUrl + ' Không thấy đường dẫn này' })
 })
-app.listen(process.env.SEVER_PORT, () => {
-  console.log('http:' + process.env.SEVER_PORT)
+app.listen(port, () => {
+  console.log('http:' + port)
 })
