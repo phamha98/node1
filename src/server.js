@@ -113,6 +113,6 @@ app.get('/', (req, res) => {
 app.use(function (req, res) {
   res.status(404).send({ url: req.originalUrl + ' Không thấy đường dẫn này' })
 })
-app.listen(3000, () => {
-  console.log('http:3000')
+app.listen(process.env.SEVER_PORT, () => {
+  console.log('http:' + process.env.SEVER_PORT)
 })
