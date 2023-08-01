@@ -103,13 +103,30 @@ app.get('/', (req, res) => {
   // Display a list of links to the files in the "uploads" directory
   // You can dynamically generate this list based on the files present in the "uploads" directory
   res.send(`
-  <html>
-  <body style="width:100%" background="https://img.freepik.com/free-vector/realistic-casino-gambling-illustration_52683-99917.jpg">
-  <div >
-    <h1 >XIn cahp</h1>
-  </div>
-  </body>
-  </html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Background HTML Template</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("https://img.freepik.com/free-vector/realistic-casino-gambling-illustration_52683-99917.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh; /* 100% of the viewport height */
+        }
+        /* Add any other custom styles for your HTML elements here */
+    </style>
+</head>
+<body>
+    <!-- Your content goes here -->
+</body>
+</html>
   `);
 });
 app.use(function (req, res) {
