@@ -103,12 +103,13 @@ app.get('/', (req, res) => {
   // Display a list of links to the files in the "uploads" directory
   // You can dynamically generate this list based on the files present in the "uploads" directory
   res.send(`
-    <h1>Uploaded Files</h1>
-    <ul>
-      <li><a href="/uploads/img.png">File 1</a></li>
-      <li><a href="/file2.txt">File 2</a></li>
-      <!-- Add more links for other files as needed -->
-    </ul>
+  <html>
+  <body style="width:100%" background="https://img.freepik.com/free-vector/realistic-casino-gambling-illustration_52683-99917.jpg">
+  <div >
+    <h1 >XIn cahp</h1>
+  </div>
+  </body>
+  </html>
   `);
 });
 app.use(function (req, res) {
