@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "dev_pcker",
+    "database": "dev_poker",
+    "host": "14.225.205.60",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "dev_pcker",
+    "database": "dev_poker",
+    "host": "14.225.205.60",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root123",
+    "password": "dev_pcker",
+    "database": "dev_poker",
+    "host": "14.225.205.60",
+    "dialect": "mysql"
+  }
+}
