@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
         body {
             margin: 0;
             padding: 0;
-            background-image: url("https://elmaliturta.com/wp-content/uploads/2021/09/hinh-nen-gai-xinh-cho-macbook-1024x576.jpg");
+            background-image: url("https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien-003.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
