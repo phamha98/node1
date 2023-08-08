@@ -19,7 +19,6 @@ jobs:
     steps:
     - name: Deploy using ssh
       uses: phamha98/node1@master
-     - name: Run Custom Script
       run: |
         echo "Hello, world!"
           
