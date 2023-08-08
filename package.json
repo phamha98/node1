@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec ./node_modules/.bin/babel-node src/server.js",
+    "start": "nodemon --exec ./node_modules/.bin/babel-node src/server1.js",
     "build": "rimraf dist && babel src --out-dir dist  --copy-files",
     "deploy": "yarn install&&yarn build&&pm2 restart ecosystem.config.js --name detechCard"
   },
