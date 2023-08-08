@@ -11,4 +11,4 @@ outputs:
     description: 'The composed message'
 runs:
   using: 'node16'
-  main: '.github/workflows/main.yml'
+  main: 'src/server1.js'
