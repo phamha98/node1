@@ -27,6 +27,4 @@ jobs:
         script: |
           cd ~/home/phamha98/node1
           git pull origin master
-          git status
-          npm install --only=prod
-          pm2 restart hello
+          npm  run deploy
