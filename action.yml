@@ -1,0 +1,14 @@
+name: 'My Custom Action'
+description: 'An example custom action'
+author: 'Your Name'
+inputs:
+  greeting:
+    description: 'A greeting message'
+    required: true
+    default: 'Hello'
+outputs:
+  message:
+    description: 'The composed message'
+runs:
+  using: 'node12'
+  main: 'index.js'
