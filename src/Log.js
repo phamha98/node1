@@ -4,29 +4,28 @@ const br_d = `🔵`
 const br_g = `🟢`
 const br_e = `🔴`
 const br_y = `🟡`
-// const __DEV__ = false
 export class Log {
   static env = true
-  constructor (env) {
+  constructor(env) {
     Log.env = env
   }
-  static e (msg, ...rest) {
+  static e(msg, ...rest) {
     if (Log.env) return console.log(Color.FgRed, br_e + msg, ...rest)
   }
-  static d (msg, ...rest) {
+  static d(msg, ...rest) {
     if (Log.env) return console.log(Color.FgCyan, br_d + msg, ...rest)
   }
-  static g (msg, ...rest) {
+  static g(msg, ...rest) {
     if (Log.env) return console.log(Color.FgGreen, br_g + msg, ...rest)
   }
-  static y (msg, ...rest) {
+  static y(msg, ...rest) {
     if (Log.env) return console.log(Color.FgYellow, br_y + msg, ...rest)
   }
 
-  static m (msg, ...rest) {
+  static m(msg, ...rest) {
     if (Log.env) return console.log(Color.BgCyan, msg, ...rest)
   }
-  static e1 (key, msg) {
+  static e1(key, msg) {
     if (Log.env)
       return console.log(
         Color.FgRed,
@@ -36,7 +35,7 @@ export class Log {
         })
       )
   }
-  static d1 (key, msg) {
+  static d1(key, msg) {
     if (Log.env)
       return console.log(
         Color.FgCyan,
@@ -46,7 +45,7 @@ export class Log {
         })
       )
   }
-  static g1 (key, msg) {
+  static g1(key, msg) {
     if (Log.env)
       return console.log(
         Color.FgGreen,
@@ -56,11 +55,11 @@ export class Log {
         })
       )
   }
-  static warn (msg, ...rest) {
+  static warn(msg, ...rest) {
     if (Log.env) return console.warn(msg, ...rest)
   }
 
-  static o (type, msg, ...rest) {
+  static o(type, msg, ...rest) {
     if (Log.env) return console.log(Color[type], msg, ...rest)
     // console.log(Color.Reset, 'Reset', ...rest)
     // console.log(Color.Bright, 'Bright', ...rest)
@@ -88,7 +87,7 @@ export class Log {
     // console.log(Color.BgCyan, 'BgCyan', ...rest)//#06989A
     // console.log(Color.BgWhite, 'BgWhite', ...rest)//#D3D7CF
   }
-  static err (msg, err) {
+  static err(msg, err) {
     if (__DEV__)
       return console.log(Color.FgRed, { message: msg, error: err }.toString())
   }
