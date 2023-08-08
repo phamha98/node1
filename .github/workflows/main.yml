@@ -17,17 +17,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
- - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
+    - name: Deploy using ssh
+      uses: phamha98/node1@master
       with:
-        node-version: 14  # Change this to your desired Node.js version
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Run Tests
-      run: npm test
+        
+        script: echo "Hello, world!"
           
