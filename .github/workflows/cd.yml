@@ -18,13 +18,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Deploy using ssh
-      uses: phamha98/node1@master
+      uses: phamha98/pokerapi@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd ~/home/phamha98/node1
+          cd ~/home/phamha98/pokerapi
           git pull origin master
-          npm  run deploy
+          npm run deploy
