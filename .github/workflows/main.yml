@@ -13,28 +13,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build  # Adjust the build command
-
     - name: Deploy to Server
-       uses: owner/repo@ref
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22  # SSH port, adjust if needed
         script: |
-          cd /home/phamha98/node1
-          # git pull origin master
+          cd /home/phamha98/node1  # Adjust the path to your deployment directory
+          git pull origin master  # Pull latest changes
+          npm install  # Install dependencies
+          npm run build  # Build your project
           # Any other deployment steps you need
+
+# Add more steps as needed for your specific deployment process
 
 # # 
 
