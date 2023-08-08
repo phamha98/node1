@@ -1,3 +1,44 @@
+# name: Deploy to Server
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v2
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '14'
+
+#     - name: Install dependencies
+#       run: npm install
+
+#     - name: Build
+#       run: npm run build  # Adjust the build command
+
+#     - name: Deploy to Server
+#       uses: actions/ssh-action@master
+#       with:
+#         host: ${{ secrets.HOST }}
+#         username: ${{ secrets.USERNAME }}
+#         key: ${{ secrets.PRIVATE_KEY }}
+#         port: 22  # SSH port, adjust if needed
+#         script: |
+#           cd /home/phamha98/node1
+#           git pull origin master
+#           # Any other deployment steps you need
+
+# # 
+
+
 name: Deploy to Server
 
 on:
@@ -25,15 +66,11 @@ jobs:
       run: npm run build  # Adjust the build command
 
     - name: Deploy to Server
-      uses: actions/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: 22  # SSH port, adjust if needed
-        script: |
-          cd /home/phamha98/node1
-          git pull origin master
-          # Any other deployment steps you need
-
-# 
+      env:
+        SERVER_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SERVER_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+        rsync -avz --delete --exclude=node_modules --exclude=.git ./ username@${{ secrets.SERVER_HOST }}:/path/to/your/deploy/directory/
