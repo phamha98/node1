@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Deploy to Server
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +21,19 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: npm start
+    - name: Build
+      run: npm run build  # Adjust the build command
+
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22  # SSH port, adjust if needed
+        script: |
+          cd /path/to/your/deploy/directory
+          git pull origin master
+          # Any other deployment steps you need
+
+# Add more steps as needed for your specific deployment process
