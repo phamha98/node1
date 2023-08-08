@@ -25,7 +25,7 @@ jobs:
       run: npm run build  # Adjust the build command
 
     - name: Deploy to Server
-      uses: appleboy/ssh-action@master
+      uses: actions/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -36,4 +36,4 @@ jobs:
           git pull origin master
           # Any other deployment steps you need
 
-# Add more steps as needed for your specific deployment process
+# 
