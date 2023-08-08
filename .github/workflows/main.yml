@@ -25,7 +25,7 @@ jobs:
       run: npm run build  # Adjust the build command
 
     - name: Deploy to Server
-       uses: appleboy/ssh-action@master
+       uses: phamha98/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
