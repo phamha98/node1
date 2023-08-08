@@ -67,10 +67,10 @@ jobs:
 
     - name: Deploy to Server
       env:
-        SERVER_SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SERVER_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         mkdir -p ~/.ssh
         echo "$SERVER_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-        rsync -avz --delete --exclude=node_modules --exclude=.git ./ username@${{ secrets.SERVER_HOST }}:/path/to/your/deploy/directory/
+        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+        rsync -avz --delete --exclude=node_modules --exclude=.git ./ username@${{ secrets.HOST }}:/home/phamha98/node1/
