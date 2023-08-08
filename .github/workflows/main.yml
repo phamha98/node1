@@ -25,6 +25,4 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd ~/home/phamha98/node1
-          git pull origin master
-          npm run deploy
+          echo "Hello, world!"
