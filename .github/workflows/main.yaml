@@ -3,7 +3,6 @@ on:
 
   push:
     paths:
-      - '!README.md'
       - '!docs/**'
       - '**.js'
     branches:
