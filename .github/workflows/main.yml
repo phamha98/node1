@@ -32,10 +32,8 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22  # SSH port, adjust if needed
         script: |
-        ls
-        # echo "123123"
-          # cd /path/to/your/deploy/directory
-          # git pull origin master
+          cd /home/node1
+          git pull origin master
           # Any other deployment steps you need
 
 # 
