@@ -1,77 +1,23 @@
-name: Deploy to Server
-
 on:
   push:
     branches:
-      - master
-
+      - main
+  workflow_dispatch:
+  
 jobs:
-  deploy:
+  run_pull:
+    name: run pull
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build  # Adjust the build command
-
-    - name: Deploy to Server
-      env:
-        SERVER_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    - name: install ssh keys
+      # check this thread to understand why its needed:
+      # https://stackoverflow.com/a/70447517
       run: |
-        mkdir -p ~/.ssh
-        echo "$SERVER_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets._HOST }} >> ~/.ssh/known_hosts
-        rsync -avz --delete --exclude=node_modules --exclude=.git ./ username@${{ secrets.HOST }}:/path/to/your/deploy/directory/
-
-
-# Add more steps as needed for your specific deployment process
-
-# # 
-
-
-# name: Deploy to Server
-
-# on:
-#   push:
-#     branches:
-#       - master
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout repository
-#       uses: actions/checkout@v2
-
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: '14'
-
-#     - name: Install dependencies
-#       run: npm install
-
-#     - name: Build
-#       run: npm run build  # Adjust the build command
-
-#     - name: Deploy to Server
-#       env:
-#         SERVER_SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-#       run: |
-#         mkdir -p ~/.ssh
-#         echo "$SERVER_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-#         chmod 600 ~/.ssh/id_rsa
-#         ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-#         rsync -avz --delete --exclude=node_modules --exclude=.git ./ root@${{ secrets.HOST }}:/home/phamha98/node1/
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.HOST }} > ~/.ssh/known_hosts
+    - name: connect and pull
+      run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
+    - name: cleanup
+      run: rm -rf ~/.ssh
