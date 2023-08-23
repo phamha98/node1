@@ -1,11 +1,39 @@
-name: "Server Deployment"
+name: Deploy to Server
+
 on:
-	push:
-  		branches: [master]
+  push:
+    branches:
+      - master
+
 jobs:
-	deployment:
-  	runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Say Hello!
-    run: echo "Hello there!"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build  # Adjust the build command
+
+    # - name: Deploy to Server
+    #   uses: actions/ssh-action@master
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{ secrets.PRIVATE_KEY }}
+    #     port: 22  # SSH port, adjust if needed
+    #     script: |
+    #       cd /path/to/your/deploy/directory
+    #       git pull origin master
+    #       # Any other deployment steps you need
+
+# 
