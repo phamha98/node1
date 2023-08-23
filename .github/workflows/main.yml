@@ -1,21 +1,23 @@
+name: Auto deploy
+
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  
+      - master
+
 jobs:
-  run_pull:
-    name: run pull
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-    
     steps:
-    - name: install ssh keys
-      run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.HOST }} > ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} #hostname of server
+          username: ${{ root }} #username login to server
+          password: ${{ 123456 }} #password login to server
+          port: ${{ secrets.PORT }} #port of server - often port is 22
+          script: | # run with multiple script
+            cd /home/node1
+            npm run deploy
