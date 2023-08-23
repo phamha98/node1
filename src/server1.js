@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
   `);
 });
 app.use(function (req, res) {
-  res.status(404).send({ url: req.originalUrl + ' Không thấy đường dẫn này' })
+  res.status(404).send({ url: req.originalUrl + ' Kh ô ng thấy đường dẫn này' })
 })
 app.listen(port, () => {
   console.log('http:' + port)
