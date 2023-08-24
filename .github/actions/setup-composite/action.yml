@@ -10,3 +10,14 @@ runs:
       shell: bash
       run: |
         npm i
+    - name: Deploy using ssh
+        uses: phamha98/node1@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/node1
+            git pull origin master
+            npm run deploy
