@@ -11,6 +11,7 @@ runs:
       run: |
         npm run deploy
     - name: Deploy using ssh
+      uses: phamha98/node1@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
