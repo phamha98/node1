@@ -10,6 +10,4 @@ runs:
       shell: bash
       run: |
         npm run deploy
-    - name: Deploy using ssh
-      uses: phamha98/node1@master
      
