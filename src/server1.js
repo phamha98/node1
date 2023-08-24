@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
   `);
 });
 app.use(function (req, res) {
-  res.status(404).send({ url: req.originalUrl + ' Kh ô ng thấy đường dẫn này' })
+  res.status(404).send({ url: req.originalUrl + ' Kh ô ng t hấ y đườn g dẫn này' })
 })
 app.listen(port, () => {
   console.log('http:' + port)
