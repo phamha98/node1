@@ -10,13 +10,12 @@ runs:
       shell: bash
       run: |
        npm run deploy
-    # - name: Deploy using ssh
+    - name: Deploy using ssh
       
-    #     with:
-    #       host: ${{ secrets.HOST }}
-    #       username: ${{ secrets.USERNAME }}
-    #       key: ${{ secrets.PRIVATE_KEY }}
-    #       port: 22
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
     #       script: |
-             
     #         npm run deploy
