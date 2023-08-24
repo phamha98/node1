@@ -1,28 +1,12 @@
-name: deploy2
+name: setup-env
 
-on:
-  push:
-    branches: [ master ]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
       with:
-        node-version: '16'
-
-    - name: Deploy using ssh
-      uses: phamha98/node1@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd /home/node1
-          git pull origin master
-          npm run deploy
+       node-version: '16'
+    - name: run dependencies
+      shell: bash
+      run: |
+        npm i
