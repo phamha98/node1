@@ -9,5 +9,6 @@ runs:
     - name: run dependencies
       shell: bash
       run: |
-        npm run deploy
+        cd /home/node1
+        # npm run deploy
      
