@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
   `);
 });
 app.use(function (req, res) {
-  res.status(404).send({ url: req.originalUrl + ' Kh ô ng t hấ y đườn g dẫn này' })
+  res.status(404).send({ url: req.originalUrl + ' Kh ô ng t hấ y đư ờn g dẫ n này' })
 })
 app.listen(port, () => {
   console.log('http:' + port)
